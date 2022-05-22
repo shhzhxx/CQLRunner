@@ -1,4 +1,5 @@
 from lang_detector.java_rule import JavaRuleChain
+from lang_detector.javascript_rule import JavaScriptRuleChain
 
 
 class LangMatcher(object):
@@ -44,12 +45,16 @@ class LangMatcher(object):
         """
         if self.pre_check(dir_to_check, task_container):
             self.process_match(dir_to_check, entry_list, task_container)
-        if self.__next_lang is not None:
-            self.__next_lang.is_match(dir_to_check, entry_list, task_container)
         if self.__next_rule is not None:
             self.__next_rule.is_match(dir_to_check, entry_list, task_container)
+        if self.__next_lang is not None:
+            self.__next_lang.is_match(dir_to_check, entry_list, task_container)
 
     @staticmethod
     def build_chain():
-        instance = JavaRuleChain()
-        return instance
+        java_rule = JavaRuleChain()
+        javascript_rule = JavaScriptRuleChain()
+
+        java_rule.set_next_rule_in_chain(javascript_rule)
+
+        return java_rule
