@@ -19,9 +19,9 @@ def build_chain():
 
 class TaskAgent(object):
     def __init__(self):
-        self.task_list = list()
+        self.task_list = []
 
     def build_tasks(self, root_dir):
         matcher = build_chain()
-        for sub_dir in walk_for_dir_bfs(root_dir, config.lang_detect_depth):
+        for sub_dir in walk_for_dir_bfs(root_dir, config.CONF['lang_detect']['depth']):
             matcher.match(sub_dir, self.task_list, TaskContainer())

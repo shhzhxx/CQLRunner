@@ -1,7 +1,7 @@
 from lang_detector.lang_enum import LangType
 
 
-class Task(object):
+class TaskInfo(object):
     def __init__(self, src_root):
         self.src_root = src_root            # 源码目录
         self.lang_type = LangType.NONE      # 语言类型
@@ -10,7 +10,7 @@ class Task(object):
 
 class TaskContainer(object):
     def __init__(self):
-        self.task_dict = dict()
+        self.task_dict = {}
 
     def is_lang_and_dir_had_task(self, src_root, lang_type):
         """
@@ -19,4 +19,4 @@ class TaskContainer(object):
         :param lang_type: 语言类型
         :return: 如果已有类似任务，则返回True
         """
-        return any(task.lang_type is lang_type for task in self.task_dict.get(src_root, list()))
+        return any(task.lang_type is lang_type for task in self.task_dict.get(src_root, []))

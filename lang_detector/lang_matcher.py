@@ -3,6 +3,7 @@ class LangMatcher(object):
         self.lang_type = None
         self.__next_lang = None
         self.__next_rule = None
+        self.command_build_method = None
 
     def set_next_lang_in_chain(self, next_lang):
         self.__next_lang = next_lang
