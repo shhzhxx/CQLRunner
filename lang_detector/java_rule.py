@@ -21,10 +21,10 @@ class MavenRule(JavaRuleChain):
         super().__init__()
         self.checked_dir_set = set()
 
-    def is_match(self, dir_to_check, task_list):
+    def process_match(self, dir_to_check, entry_list, task_container):
         pass
 
 
 class GradleRule(JavaRuleChain):
-    def is_match(self, dir_to_check, task_list):
+    def process_match(self, dir_to_check, entry_list, task_container):
         pass

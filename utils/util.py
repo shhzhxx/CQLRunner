@@ -4,8 +4,7 @@ from os.path import isdir, abspath
 
 def walk_for_dir_bfs(root_dir, depth):
     """
-    宽度优先遍历目标路径下的目录，有深度限制
-
+    宽度优先遍历目标路径下的目录，有深度限制\n
     :param root_dir: 需要遍历的根目录
     :param depth: 遍历深度
     :return: 目标路径下的目录(包括传入的根目录)

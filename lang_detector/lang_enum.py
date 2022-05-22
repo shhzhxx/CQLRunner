@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class LangType(Enum):
+    NONE = 'none'
     # CPP = 'cpp'
     # CSHARP = 'csharp'
     # CSV = 'csv'
