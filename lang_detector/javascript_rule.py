@@ -6,7 +6,6 @@ class JavaScriptRuleChain(LangMatcher):
     def __init__(self):
         super().__init__()
         self.lang_type = LangType.JAVASCRIPT
-        self.build_chain()
 
     def build_chain(self):
         electron_rule = ElectronRule()

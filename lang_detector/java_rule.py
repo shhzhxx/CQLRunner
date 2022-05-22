@@ -6,7 +6,6 @@ class JavaRuleChain(LangMatcher):
     def __init__(self):
         super().__init__()
         self.lang_type = LangType.JAVA
-        self.build_chain()
 
     def build_chain(self):
         maven_rule = MavenRule()

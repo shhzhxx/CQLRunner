@@ -1,7 +1,3 @@
-from lang_detector.java_rule import JavaRuleChain
-from lang_detector.javascript_rule import JavaScriptRuleChain
-
-
 class LangMatcher(object):
     def __init__(self):
         self.lang_type = None
@@ -22,7 +18,7 @@ class LangMatcher(object):
         :param task_container: 任务容器
         :return: 如果需要匹配，则返回True
         """
-        return task_container.is_lang_and_dir_had_task(dir_to_check, self.lang_type)
+        return not task_container.is_lang_and_dir_had_task(dir_to_check, self.lang_type)
 
     def process_match(self, dir_to_check, entry_list, task_container):
         """
@@ -46,15 +42,6 @@ class LangMatcher(object):
         if self.pre_check(dir_to_check, task_container):
             self.process_match(dir_to_check, entry_list, task_container)
         if self.__next_rule is not None:
-            self.__next_rule.is_match(dir_to_check, entry_list, task_container)
+            self.__next_rule.match(dir_to_check, entry_list, task_container)
         if self.__next_lang is not None:
-            self.__next_lang.is_match(dir_to_check, entry_list, task_container)
-
-    @staticmethod
-    def build_chain():
-        java_rule = JavaRuleChain()
-        javascript_rule = JavaScriptRuleChain()
-
-        java_rule.set_next_rule_in_chain(javascript_rule)
-
-        return java_rule
+            self.__next_lang.match(dir_to_check, entry_list, task_container)
