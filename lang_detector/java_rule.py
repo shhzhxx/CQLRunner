@@ -38,7 +38,7 @@ class MavenRule(JavaRuleChain):
         command_list.extend(['--settings', config.CONF['mvn']['settings']]) if config.CONF['mvn']['settings'] else None
         command_list.extend(['--threads', config.CONF['mvn']['threads']]) if config.CONF['mvn']['threads'] else None
         command_list.extend(config.CONF['mvn']['phase'] or [])
-        return ' '.join([i if ' ' in i else f'"f{i}"' for i in command_list])
+        return ' '.join(command_list)
 
 
 class GradleRule(JavaRuleChain):
