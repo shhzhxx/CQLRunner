@@ -6,6 +6,7 @@ from lang_detector.java_rule import JavaRuleChain
 from lang_detector.javascript_rule import JavaScriptRuleChain
 from task_center.task import TaskContainer
 from utils import config
+from utils.path_judge import PathJudge
 from utils.util import walk_for_dir_bfs
 
 
@@ -112,6 +113,7 @@ class TaskAgent(object):
     def __init__(self):
         self.root_dir = None
         self.task_container = TaskContainer()
+        self.path_judge = PathJudge()
 
     def locate_at(self, root_dir):
         self.root_dir = root_dir
@@ -126,6 +128,8 @@ class TaskAgent(object):
         print('结束构建分析链')
         print('开始分析目录')
         for sub_dir in walk_for_dir_bfs(self.root_dir, config.CONF['lang_detect']['depth']):
+            if self.path_judge.is_guilty(sub_dir):
+                continue
             matcher.match(sub_dir, os.listdir(sub_dir), self.task_container)
         print('结束分析目录')
         print('开始构建Code QL数据库')

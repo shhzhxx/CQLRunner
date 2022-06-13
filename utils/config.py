@@ -1,12 +1,11 @@
-# 根据规则匹配出的语言类型集合
-detected_lang_set = set()
-
 CONF = {
-    # 对于对一些不能非空的操作目录，使用前预先清空，例如数据库目录
+    # 是否预先清空过程中产生的目录和文件，例如数据库目录、结果目录、日志文件
     'rmtree_before_use': False,
     'lang_detect': {
         # 对给定的目录进行探测的深度
-        'depth': 2
+        'depth': 2,
+        # 正则表达式列表，识别过程中应当排除的路径
+        're_excluded_paths': [r'.*[/\]node_modules[/\].*']
     },
     'mvn': {
         # 【必须修改】maven可执行文件路径
@@ -14,7 +13,7 @@ CONF = {
         # maven执行时的一些全局选项
         'options': ['--batch-mode', '--fail-never', '--quiet', '-U'],
         # maven操作时的线程数
-        'threads': '4',
+        'threads': '1',
         # maven的settings.xml配置文件路径
         'settings': None,
         # maven执行时的系统属性
@@ -38,7 +37,7 @@ CONF = {
                 # 【必须修改】所有数据库的根目录
                 'database_dir': None,
                 # 如果有其它想自定义的选项，可以填到这里
-                'other_options': ['--threads=4',
+                'other_options': ['--threads=1',
                                   '--overwrite',
                                   '--no-count-lines'],
             },
@@ -56,7 +55,7 @@ CONF = {
                     'javascript': 'javascript-security-extended'
                 },
                 # 如果有其它想自定义的选项，可以填到这里
-                'other_options': ['--threads=4'],
+                'other_options': ['--threads=1'],
             }
         }
     }
