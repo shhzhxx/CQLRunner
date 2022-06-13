@@ -6,8 +6,8 @@ from lang_detector.java_rule import JavaRuleChain
 from lang_detector.javascript_rule import JavaScriptRuleChain
 from task_center.task import TaskContainer
 from utils import config
-from utils.path_judge import PathJudge
-from utils.util import walk_for_dir_bfs
+from utils.path_util import PathJudge
+from utils.path_util import walk_for_dir_bfs
 
 
 def build_chain():
