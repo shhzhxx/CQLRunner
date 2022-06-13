@@ -7,6 +7,7 @@ from lang_detector.lang_enum import LangType
 from lang_detector.lang_matcher import LangMatcher
 from task_center.task import TaskInfoBuilder
 from utils import config
+from utils.log_util import EasyLogFactory
 
 
 class JavaRuleChain(LangMatcher):
@@ -39,7 +40,7 @@ class MavenRule(JavaRuleChain):
         try:
             tasks = self.recursive_parse_pom(dir_to_check, True)
         except BaseException as e:
-            print(e)
+            EasyLogFactory.produce('maven_rule', config.CONF['log_file_path']).error(e)
 
         task_container.batch_add_task(tasks)
 

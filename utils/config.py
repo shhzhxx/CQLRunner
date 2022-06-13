@@ -1,6 +1,8 @@
 CONF = {
     # 是否预先清空过程中产生的目录和文件，例如数据库目录、结果目录、日志文件
     'rmtree_before_use': False,
+    # 如果需要将日志打印到文件的话，可以修改此属性为真实路径
+    'log_file_path': None,
     'lang_detect': {
         # 对给定的目录进行探测的深度
         'depth': 2,

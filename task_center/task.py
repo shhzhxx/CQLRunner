@@ -66,3 +66,12 @@ class TaskContainer(object):
                 if not task.is_real_task:
                     continue
                 yield task
+
+    def __str__(self):
+        real_tasks = {}
+        virtual_tasks = {}
+        for path in self.task_dict:
+            for task in self.task_dict[path]:
+                tasks = real_tasks if task.is_real_task else virtual_tasks
+                tasks[task.lang_type.value] = tasks.get(task.lang_type.value, 0) + 1
+        return f'真实任务统计: {real_tasks}, 虚拟任务统计: {virtual_tasks}'
