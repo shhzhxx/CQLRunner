@@ -12,6 +12,7 @@ def build_local_config():
 
     # 可选修改
     config.CONF['log_file_path'] = r''
+    config.CONF['rmtree_before_use'] = True
 
 
 if __name__ == '__main__':

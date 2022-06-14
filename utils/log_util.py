@@ -3,9 +3,13 @@ import logging
 
 class EasyLogFactory(object):
     @staticmethod
-    def produce(logger_name, log_file_path, file_level=logging.INFO, console_level=logging.DEBUG):
+    def produce(logger_name, log_file_path, log_file_mode='a', file_level=logging.INFO, console_level=logging.DEBUG):
         if log_file_path:
-            return EasyLogFactory.__console_and_file(logger_name, log_file_path, file_level, console_level)
+            return EasyLogFactory.__console_and_file(logger_name,
+                                                     log_file_path,
+                                                     log_file_mode,
+                                                     file_level,
+                                                     console_level)
         else:
             return EasyLogFactory.__console(logger_name, console_level)
 
@@ -19,10 +23,11 @@ class EasyLogFactory(object):
         return logging.getLogger(logger_name)
 
     @staticmethod
-    def __console_and_file(logger_name, log_file_path, file_level, console_level):
+    def __console_and_file(logger_name, log_file_path, log_file_mode, file_level, console_level):
         # set up logging to file
         logging.basicConfig(
             filename=log_file_path,
+            filemode=log_file_mode,
             level=file_level,
             encoding='utf-8',
             format='[%(asctime)s] - %(name)s - %(message)s',

@@ -5,7 +5,7 @@ CONF = {
     'log_file_path': None,
     'lang_detect': {
         # 对给定的目录进行探测的深度
-        'depth': 2,
+        'depth': 3,
         # 正则表达式列表，识别过程中应当排除的路径
         're_excluded_paths': [r'.*[/\\]node_modules[/\\].*']
     },
@@ -39,7 +39,7 @@ CONF = {
                 # 【必须修改】所有数据库的根目录
                 'database_dir': None,
                 # 如果有其它想自定义的选项，可以填到这里
-                'other_options': ['--threads=1',
+                'other_options': ['--threads=2',
                                   '--overwrite',
                                   '--no-count-lines'],
             },
@@ -57,7 +57,7 @@ CONF = {
                     'javascript': 'javascript-security-extended'
                 },
                 # 如果有其它想自定义的选项，可以填到这里
-                'other_options': ['--threads=1'],
+                'other_options': ['--threads=2'],
             }
         }
     }

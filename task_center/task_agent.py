@@ -16,7 +16,9 @@ class TaskAgent(object):
         self.root_dir = root_dir
         self.task_container = TaskContainer()
         self.path_judge = PathJudge()
-        self.logger = EasyLogFactory.produce('task_agent', config.CONF['log_file_path'])
+        self.logger = EasyLogFactory.produce('task_agent',
+                                             config.CONF['log_file_path'],
+                                             'w' if config.CONF['rmtree_before_use'] else 'a')
 
     def run_command(self, command_list):
         with subprocess.Popen(command_list,
@@ -56,7 +58,7 @@ class TaskAgent(object):
 
     def preprocess(self):
         """
-        根据配置进行运行前的处理，目前是清空过程中产生的目录和文件，例如数据库目录、结果目录、日志文件\n
+        根据配置进行运行前的处理，目前是清空过程中产生的目录和文件，例如数据库目录、结果目录\n
         :return:
         """
         self.logger.debug('开始预处理')
