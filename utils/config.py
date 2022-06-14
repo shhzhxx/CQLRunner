@@ -7,7 +7,7 @@ CONF = {
         # 对给定的目录进行探测的深度
         'depth': 2,
         # 正则表达式列表，识别过程中应当排除的路径
-        're_excluded_paths': [r'.*[/\]node_modules[/\].*']
+        're_excluded_paths': [r'.*[/\\]node_modules[/\\].*']
     },
     'mvn': {
         # 【必须修改】maven可执行文件路径
