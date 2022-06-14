@@ -62,28 +62,23 @@ class TaskAgent(object):
         self.logger.debug('开始预处理')
         if not config.CONF['rmtree_before_use']:
             return
-        self.clear_path(config.CONF['code_ql']['database']['create']['database_dir'])
-        self.clear_path(config.CONF['code_ql']['database']['analyze']['output_dir'])
-        self.clear_path(config.CONF['log_file_path'])
+        self.clear_dir(config.CONF['code_ql']['database']['create']['database_dir'])
+        self.clear_dir(config.CONF['code_ql']['database']['analyze']['output_dir'])
 
-    def clear_path(self, target):
+    def clear_dir(self, target):
         """
-        如果目标是目录，删除并重建\n
-        如果目标是文件，删除\n
-        如果目标不存在，直接返回\n
+        清空目录并重建\n
         :param target: 目标目录
         :return:
         """
         if not os.path.exists(target):
-            return
-        if os.path.isdir(target):
+            os.mkdir(target)
+        elif os.path.isdir(target):
             self.logger.debug(f'正在清空目录{target}')
             shutil.rmtree(target)
             os.mkdir(target)
-            return
-        if os.path.isfile(target):
-            self.logger.debug(f'正在删除文件{target}')
-            os.remove(target)
+        else:
+            raise ValueError('目标路径指向文件而非目录')
 
     def build_chain(self):
         """
