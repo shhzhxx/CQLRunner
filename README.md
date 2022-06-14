@@ -14,5 +14,4 @@
 | 8   | 规则补充：RUBY       | pending | 均不支持                   |
 | 9   | 规则补充：HTML       | pending | 均不支持                   |
 | 10  | 规则补充：PROPERTIES | pending | 均不支持                   |
-| 11  | 规则补充：PROPERTIES | pending | 均不支持                   |
-| 12  | 规则补充：XML        | pending | 均不支持                   |
+| 11  | 规则补充：XML        | pending | 均不支持                   |
